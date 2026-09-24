@@ -4,8 +4,9 @@ Site e-commerce pour la vente de vêtements modestes (femmes, hommes, enfants).
 Catalogue, panier, paiement en ligne (Wave, Orange Money, Free Money, carte
 bancaire via PayDunya) et back-office admin, sans compte client.
 
-**Statut :** en développement. Dépôt privé :
-https://github.com/dioufdiarrababacar-adminsys/aya-boutique-modeste
+**Statut :** en ligne (mode test, pas encore de vrais paiements).
+Dépôt public : https://github.com/dioufdiarrababacar-adminsys/aya-boutique-modeste
+Site : https://aya-boutique-modeste.vercel.app
 
 ## Stack technique
 
@@ -48,10 +49,12 @@ Générer un nouveau hash de mot de passe admin :
 node -e "console.log(require('bcryptjs').hashSync('ton-mot-de-passe', 10))"
 ```
 
-**Piège important :** dans le `.env`, il faut échapper chaque `$` du hash
-bcrypt en `\$` (ex. `\$2b\$10\$...`). Next.js interprète sinon `$2b`, `$10`,
-etc. comme des références de variables d'environnement et les vide
-silencieusement, ce qui casse le mot de passe admin sans erreur visible.
+**Piège important (local uniquement) :** dans le `.env` local, il faut
+échapper chaque `$` du hash bcrypt en `\$` (ex. `\$2b\$10\$...`). Next.js
+interprète sinon `$2b`, `$10`, etc. comme des références de variables
+d'environnement et les vide silencieusement. **Sur Vercel, ne PAS échapper** :
+les variables d'environnement Vercel sont injectées brutes (pas de parsing
+dotenv), donc le hash doit y être collé sans backslash, tel quel.
 
 ## Ce qui reste à faire avant une mise en ligne réelle
 
@@ -61,8 +64,9 @@ silencieusement, ce qui casse le mot de passe admin sans erreur visible.
 - **Photos produits** : remplacer les placeholders (`/produits/placeholder.svg`)
   par de vraies photos. Prévoir un hébergement d'images (ex. Cloudinary,
   ou un dossier `public/produits/` si peu de produits).
-- **Hébergement** : déployé sur Netlify (Next.js Runtime), connecté au dépôt
-  GitHub. Base Neon déjà en place.
+- **Hébergement** : déployé sur Vercel, connecté au dépôt GitHub (push sur
+  `main` = déploiement auto). Base Neon déjà en place. Protection SSO Vercel
+  désactivée sur le projet pour un accès public normal.
 - **Nom de domaine** et déclaration du numéro de téléphone / WhatsApp pour le
   service client dans le footer.
 - **Mentions légales / CGV** : pages actuellement en texte statique dans le
