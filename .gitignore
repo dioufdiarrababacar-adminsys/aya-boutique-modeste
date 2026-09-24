@@ -43,3 +43,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Netlify folder
+.netlify
+
+# captures d'ecran ou fichiers temporaires deposes par megarde a la racine
+/images/
