@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --palette-ivoire: #faf7f2;
+  --palette-sable: #f1ebdf;
+  --palette-sable-fonce: #e7e1d6;
+  --palette-charbon: #2b2a28;
+  --palette-terracotta: #8a6a50;
+  --background: var(--palette-ivoire);
+  --foreground: var(--palette-charbon);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ivoire: var(--palette-ivoire);
+  --color-sable: var(--palette-sable);
+  --color-sable-fonce: var(--palette-sable-fonce);
+  --color-charbon: var(--palette-charbon);
+  --color-terracotta: var(--palette-terracotta);
+  --font-sans: var(--font-work-sans);
+  --font-serif: var(--font-fraunces);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif), serif;
+  font-weight: 500;
+}
