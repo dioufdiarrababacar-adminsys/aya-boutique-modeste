@@ -4,13 +4,13 @@ Site e-commerce pour la vente de vêtements modestes (femmes, hommes, enfants).
 Catalogue, panier, paiement en ligne (Wave, Orange Money, Free Money, carte
 bancaire via PayDunya) et back-office admin, sans compte client.
 
-**Statut :** en développement, non déployé. Design de référence : voir
-`docs/maquette.md`.
+**Statut :** en développement. Dépôt privé :
+https://github.com/dioufdiarrababacar-adminsys/aya-boutique-modeste
 
 ## Stack technique
 
 - Next.js 16 (App Router, TypeScript, Tailwind CSS v4)
-- Prisma + SQLite en local (facile à migrer vers Postgres en production)
+- Prisma + Postgres (Neon)
 - Zustand pour le panier (persisté en localStorage)
 - PayDunya pour le paiement (agrégateur sénégalais : Wave, Orange Money, Free
   Money, carte Visa/Mastercard en une seule intégration)
@@ -34,7 +34,7 @@ http://localhost:3000/admin.
 
 | Variable | Description |
 |---|---|
-| `DATABASE_URL` | Connexion base de données (`file:./dev.db` en local) |
+| `DATABASE_URL` | Connexion Postgres (ex. Neon : https://neon.tech, tier gratuit) |
 | `ADMIN_EMAIL` | Email du compte admin |
 | `ADMIN_PASSWORD_HASH` | Hash bcrypt du mot de passe admin (voir commande ci-dessous) |
 | `ADMIN_SESSION_SECRET` | Chaîne aléatoire longue, signe le cookie de session |
@@ -61,9 +61,8 @@ silencieusement, ce qui casse le mot de passe admin sans erreur visible.
 - **Photos produits** : remplacer les placeholders (`/produits/placeholder.svg`)
   par de vraies photos. Prévoir un hébergement d'images (ex. Cloudinary,
   ou un dossier `public/produits/` si peu de produits).
-- **Hébergement** : Vercel est le plus simple pour Next.js. Prévoir une base
-  Postgres managée (ex. Neon, Supabase) pour remplacer SQLite en production
-  (SQLite ne survit pas aux redéploiements sur Vercel).
+- **Hébergement** : déployé sur Netlify (Next.js Runtime), connecté au dépôt
+  GitHub. Base Neon déjà en place.
 - **Nom de domaine** et déclaration du numéro de téléphone / WhatsApp pour le
   service client dans le footer.
 - **Mentions légales / CGV** : pages actuellement en texte statique dans le
